@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app height="55" color="white" flat>
     <div class="d-md-none nav-mobile-container">
-      <div style="font-size: 18px; font-weight: bold">Def·Game</div>
+      <div style="font-size: 18px;font-weight: bold;color:#17A1FF">Def·Game</div>
       <div style="margin-left: auto">
         <a @click="openDrawer" style="margin-right: 5px; font-size: 20px">
           <i class="iconfont icon-caidan" style="font-size: 22px"></i>
@@ -10,7 +10,7 @@
     </div>
     <div class="d-md-block d-none nav-container">
       <div class="float-left blog-title">
-        <router-link to="/">
+        <router-link style="color:#17A1FF" to="/">
           Def·Game
         </router-link>
       </div>
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     openDrawer() {
-      console.log('打开侧边栏')
+      this.$store.state.drawer = true
     }
   }
 }
@@ -88,6 +88,9 @@ ul {
   font-size: 14px;
   width: 100%;
   height: 100%;
+}
+.blog-title {
+  margin-left: 10px;
 }
 .blog-title,
 .nav-title {
