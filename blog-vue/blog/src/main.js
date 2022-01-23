@@ -4,7 +4,8 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
-
+import './assets/css/iconfont.css'
+import './assets/css/index.css'
 Vue.config.productionTip = false
 
 new Vue({
