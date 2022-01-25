@@ -23,3 +23,6 @@ ul{
 .theme--light.v-application {
   background-color: #F2F2F2;
 }
+.el-input__inner {
+  height: 36px;
+}

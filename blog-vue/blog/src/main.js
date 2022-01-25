@@ -8,12 +8,11 @@ import './assets/css/iconfont.css'
 import './assets/css/index.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import { popover, button } from 'element-ui'
+import { autocomplete, Icon } from 'element-ui'
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
-Vue.use(popover)
-Vue.use(button)
-
+Vue.use(autocomplete)
+Vue.use(Icon)
 new Vue({
   router,
   store,

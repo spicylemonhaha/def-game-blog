@@ -4,13 +4,12 @@
     <v-row class="home-container">
       <v-col md="9" cols="12">
         <v-card
-          class="animated zoomIn article-card"
-          style="border-radius: 12px 8px 8px 12px"
+          class="animated zoomIn article-card rounded-sm"
           v-for="item of articleList"
           :key="item.id"
         >
           <!-- 文章封面图 -->
-          <div class="article-cover left-radius">
+          <div class="article-cover rounded-sm">
             <router-link :to="'/articles/' + item.id">
               <v-img
                 class="on-hover"
@@ -22,22 +21,17 @@
           </div>
           <!-- 文章信息 -->
           <div class="article-wrapper">
-            <div style="line-height: 1.4">
+            <div style="line-height: 1.4;font-weight: bold">
               <router-link :to="'/articles/' + item.id">
                 {{ item.articleTitle }}
               </router-link>
             </div>
             <div class="article-info">
               <!-- 是否置顶 -->
-              <span v-if="item.isTop == 1">
-                <span style="color: #ff7242">
-                  <i class="iconfont iconzhiding" /> 置顶
-                </span>
-                <span class="separator">|</span>
-              </span>
+
               <!-- 发表时间 -->
               <v-icon size="14">mdi-calendar-month-outline</v-icon>
-              {{ item.createTime | date }}
+              {{ item.createTime  }}
               <span class="separator">|</span>
               <!-- 文章分类 -->
               <router-link :to="'/categories/' + item.categoryId">
@@ -70,71 +64,26 @@
       <!-- 博主信息 -->
       <v-col md="3" cols="12" class="d-md-block d-none">
         <div class="blog-wrapper">
-          <v-card class="animated zoomIn blog-card mt-5">
-            <div class="author-wrapper">
-              <!-- 博主头像 -->
-              <v-avatar size="110">
-                <img class="author-avatar" :src="blogInfo.avatar" />
-              </v-avatar>
-              <div style="font-size: 1.375rem">{{ blogInfo.nickname }}</div>
-              <div style="font-size: 0.875rem">{{ blogInfo.intro }}</div>
-            </div>
-            <!-- 博客信息 -->
-            <div class="blog-info-wrapper">
-              <div class="blog-info-data">
-                <router-link to="/archives">
-                  <div style="font-size: 0.875rem">文章</div>
-                  <div style="font-size: 1.25rem">
-                    {{ blogInfo.articleCount }}
-                  </div>
-                </router-link>
-              </div>
-              <div class="blog-info-data">
-                <router-link to="/categories">
-                  <div style="font-size: 0.875rem">分类</div>
-                  <div style="font-size: 1.25rem">
-                    {{ blogInfo.categoryCount }}
-                  </div>
-                </router-link>
-              </div>
-              <div class="blog-info-data">
-                <router-link to="/tags">
-                  <div style="font-size: 0.875rem">标签</div>
-                  <div style="font-size: 1.25rem">{{ blogInfo.tagCount }}</div>
-                </router-link>
-              </div>
-            </div>
+          <v-card class="animated zoomIn blog-card ">
             <!-- 收藏按钮 -->
+            <div class="blog-message">
+              <div style="font-size:24px;font-weight:bold;color:#17A1FF">Def·Game</div>
+              <div style="font-size:18px">算法游乐场</div>
+              <div style="font-size:14px;color:#A9A0A9">关于我们</div>
+            </div>
             <a class="collection-btn" @click="tip = true">
               <v-icon color="#fff" size="18" class="mr-1">mdi-bookmark</v-icon>
               加入书签
             </a>
-            <div class="card-info-social">
-              <a
-                class="iconfont iconqq"
-                target="_blank"
-                href="http://wpa.qq.com/msgrd?v=3&uin=1192176811&site=qq&menu=yes"
-              />
-              <a
-                target="_blank"
-                href="https://github.com/X1192176811"
-                class="ml-5 mr-5 iconfont icongithub"
-              />
-              <a
-                target="_blank"
-                href="https://gitee.com/feng_meiyu"
-                class="iconfont icongitee-fill-round"
-              />
-            </div>
           </v-card>
           <!-- 网站信息 -->
           <v-card class="blog-card animated zoomIn mt-5 big">
             <div class="web-info-title">
-              <v-icon size="18">mdi-bell</v-icon>
+              <v-icon size="18">mdi-checkbox-outline</v-icon>
               公告
             </div>
             <div style="font-size: 0.875rem">
-              {{ blogInfo.notice }}
+              博客上线，欢迎大家进来占沙发，源码在我的github
             </div>
           </v-card>
           <!-- 网站信息 -->
@@ -191,42 +140,6 @@ export default {
     }
   },
   methods: {
-    // 初始化
-    // init() {
-    //   document.title = this.$route.meta.title
-    //   // 一言Api进行打字机循环输出效果
-    //   fetch('https://v1.hitokoto.cn?c=i')
-    //     .then((res) => {
-    //       return res.json()
-    //     })
-    //     .then(({ hitokoto }) => {
-    //       this.initTyped(hitokoto)
-    //     })
-    // },
-    // initTyped(input, fn, hooks) {
-    //   const obj = this.obj
-    //   // eslint-disable-next-line no-unused-vars
-    //   const typed = new EasyTyper(obj, input, fn, hooks)
-    // },
-    // scrollDown() {
-    //   window.scrollTo({
-    //     behavior: 'smooth',
-    //     top: document.documentElement.clientHeight
-    //   })
-    // },
-    // runTime() {
-    //   var timeold =
-    //     new Date().getTime() - new Date('December 12,2019').getTime()
-    //   var msPerDay = 24 * 60 * 60 * 1000
-    //   var daysold = Math.floor(timeold / msPerDay)
-    //   var str = ''
-    //   var day = new Date()
-    //   str += daysold + '天'
-    //   str += day.getHours() + '时'
-    //   str += day.getMinutes() + '分'
-    //   str += day.getSeconds() + '秒'
-    //   this.time = str
-    // },
     getBlogInfo() {
       this.axios.get('/api/').then(({ data }) => {
         this.blogInfo = data.data
@@ -253,7 +166,7 @@ export default {
             })
             this.articleList.push(...data.data)
             this.current++
-            $state.loaded()
+            // $state.loaded()
           } else {
             $state.complete()
           }
@@ -261,37 +174,14 @@ export default {
     }
   },
   computed: {
-    // isRight() {
-    //   return function (index) {
-    //     if (index % 2 == 0) {
-    //       return 'article-cover left-radius'
-    //     }
-    //     return 'article-cover right-radius'
-    //   }
-    // }
+
   }
 }
 </script>
 
 <style scoped>
-.home-banner {
-  position: absolute;
-  top: -60px;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  background: url('https://www.static.talkxj.com/wallhaven-g89p2.png') center
-    center / cover no-repeat;
-  background-color: #49b1f5;
-  background-attachment: fixed;
-  text-align: center;
-  color: #fff !important;
-  animation: header-effect 1s;
-}
-.banner-container {
-  margin-top: 43vh;
-  line-height: 1.5;
-  color: #eee;
+.v-sheet.v-card:not(.v-sheet--outlined) {
+  box-shadow: none;
 }
 .blog-contact a {
   color: #fff !important;
@@ -301,14 +191,6 @@ export default {
   text-align: center;
   font-size: 1.5rem;
   margin: 6px 0 -6px;
-}
-.left-radius {
-  border-radius: 8px 0 0 8px !important;
-  order: 0;
-}
-.right-radius {
-  border-radius: 0 8px 8px 0 !important;
-  order: 1;
 }
 .article-wrapper {
   font-size: 14px;
@@ -324,35 +206,37 @@ export default {
     display: none;
   }
   .home-container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto 28px auto;
     padding: 0 5px;
   }
   .article-card {
     display: flex;
     align-items: center;
-    height: 280px;
+    height: 230px;
     width: 100%;
-    margin-top: 20px;
+    /* margin-top: 20px; */
   }
   .article-cover {
     overflow: hidden;
-    height: 50%;
+    height: 45%;
     width: 25%;
-  }
-  .on-hover {
-    transition: all 0.6s;
-  }
-  .article-card:hover .on-hover {
-    transform: scale(1.1);
+    order: 1;
+    margin-left: 35px;
   }
   .article-wrapper {
     padding: 0 2.5rem;
-    width: 55%;
+    width: 65%;
   }
   .article-wrapper a {
     font-size: 1.5rem;
     transition: all 0.3s;
+  }
+  .blog-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 8px;
   }
 }
 @media (max-width: 759px) {
@@ -365,7 +249,7 @@ export default {
   }
   .home-container {
     width: 100%;
-    margin: calc(100vh - 66px) auto 0 auto;
+    margin: 0 auto 0 auto;
   }
   .article-card {
     margin-top: 1rem;
@@ -396,7 +280,7 @@ export default {
   font-size: 2rem;
 }
 .article-wrapper a:hover {
-  color: #8e8cd8;
+  color: #17A1FF;
 }
 .article-info {
   font-size: 95%;
@@ -418,7 +302,7 @@ export default {
 }
 .blog-wrapper {
   position: sticky;
-  top: 10px;
+  top: 68px !important;
 }
 .blog-card {
   line-height: 2;
@@ -509,13 +393,13 @@ export default {
   }
 }
 .big i {
-  color: #f00;
+  color: #17A1FF;
   animation: big 0.8s linear infinite;
 }
 @keyframes big {
   0%,
   100% {
-    transform: scale(1);
+    transform: scale(1.1);
   }
   50% {
     transform: scale(1.2);
