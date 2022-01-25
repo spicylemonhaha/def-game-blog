@@ -4,7 +4,7 @@
     <v-row class="home-container">
       <v-col md="9" cols="12">
         <v-card
-          class="animated zoomIn article-card rounded-sm"
+          class="article-card rounded-sm"
           v-for="item of articleList"
           :key="item.id"
         >
@@ -21,17 +21,15 @@
           </div>
           <!-- 文章信息 -->
           <div class="article-wrapper">
-            <div style="line-height: 1.4;font-weight: bold">
+            <div style="line-height: 1.4; font-weight: bold">
               <router-link :to="'/articles/' + item.id">
                 {{ item.articleTitle }}
               </router-link>
             </div>
             <div class="article-info">
-              <!-- 是否置顶 -->
-
               <!-- 发表时间 -->
               <v-icon size="14">mdi-calendar-month-outline</v-icon>
-              {{ item.createTime  }}
+              {{ item.createTime }}
               <span class="separator">|</span>
               <!-- 文章分类 -->
               <router-link :to="'/categories/' + item.categoryId">
@@ -64,12 +62,14 @@
       <!-- 博主信息 -->
       <v-col md="3" cols="12" class="d-md-block d-none">
         <div class="blog-wrapper">
-          <v-card class="animated zoomIn blog-card ">
-            <!-- 收藏按钮 -->
+          <v-card class="animated zoomIn blog-card">
+            <!-- 收藏按钮和关于我们 -->
             <div class="blog-message">
-              <div style="font-size:24px;font-weight:bold;color:#17A1FF">Def·Game</div>
-              <div style="font-size:18px">算法游乐场</div>
-              <div style="font-size:14px;color:#A9A0A9">关于我们</div>
+              <div style="font-size: 24px; font-weight: bold; color: #17a1ff">
+                Def·Game
+              </div>
+              <div style="font-size: 18px">算法游乐场</div>
+              <div style="font-size: 14px; color: #a9a0a9">关于我们</div>
             </div>
             <a class="collection-btn" @click="tip = true">
               <v-icon color="#fff" size="18" class="mr-1">mdi-bookmark</v-icon>
@@ -77,8 +77,8 @@
             </a>
           </v-card>
           <!-- 网站信息 -->
-          <v-card class="blog-card animated zoomIn mt-5 big">
-            <div class="web-info-title">
+          <v-card class="blog-card mt-5 big">
+            <div>
               <v-icon size="18">mdi-checkbox-outline</v-icon>
               公告
             </div>
@@ -88,7 +88,7 @@
           </v-card>
           <!-- 网站信息 -->
           <v-card class="blog-card animated zoomIn mt-5">
-            <div class="web-info-title">
+            <div>
               <v-icon size="18">mdi-chart-line</v-icon>
               网站资讯
             </div>
@@ -117,7 +117,6 @@
 export default {
   created() {
     this.getBlogInfo()
-    this.timer = setInterval(this.runTime, 1000)
     this.infiniteHandler()
   },
   data: function () {
@@ -173,9 +172,7 @@ export default {
         })
     }
   },
-  computed: {
-
-  }
+  computed: {}
 }
 </script>
 
@@ -183,28 +180,10 @@ export default {
 .v-sheet.v-card:not(.v-sheet--outlined) {
   box-shadow: none;
 }
-.blog-contact a {
-  color: #fff !important;
-}
-.card-info-social {
-  line-height: 40px;
-  text-align: center;
-  font-size: 1.5rem;
-  margin: 6px 0 -6px;
-}
 .article-wrapper {
   font-size: 14px;
 }
 @media (min-width: 760px) {
-  .blog-title {
-    font-size: 2.5rem;
-  }
-  .blog-intro {
-    font-size: 1.5rem;
-  }
-  .blog-contact {
-    display: none;
-  }
   .home-container {
     max-width: 1000px;
     margin: 0 auto 28px auto;
@@ -214,7 +193,7 @@ export default {
     display: flex;
     align-items: center;
     height: 230px;
-    width: 100%;
+    /* width: 100%; */
     /* margin-top: 20px; */
   }
   .article-cover {
@@ -240,13 +219,6 @@ export default {
   }
 }
 @media (max-width: 759px) {
-  .blog-title {
-    font-size: 26px;
-  }
-  .blog-contact {
-    font-size: 1.25rem;
-    line-height: 2;
-  }
   .home-container {
     width: 100%;
     margin: 0 auto 0 auto;
@@ -270,17 +242,8 @@ export default {
     transition: all 0.3s;
   }
 }
-.scroll-down {
-  cursor: pointer;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-.scroll-down i {
-  font-size: 2rem;
-}
 .article-wrapper a:hover {
-  color: #17A1FF;
+  color: #17a1ff;
 }
 .article-info {
   font-size: 95%;
@@ -334,7 +297,7 @@ export default {
   height: 32px;
   line-height: 32px;
   transition-duration: 1s;
-  transition-property: color;
+  /* transition-property: color; */
 }
 .collection-btn:before {
   position: absolute;
@@ -345,11 +308,11 @@ export default {
   z-index: -1;
   background: #ff7242;
   content: '';
-  transition-timing-function: ease-out;
+  /* transition-timing-function: ease-out; */
   transition-duration: 0.5s;
   transition-property: transform;
   transform: scaleX(0);
-  transform-origin: 0 50%;
+  /* transform-origin: 0 50%; */
 }
 .collection-btn:hover:before {
   transition-timing-function: cubic-bezier(0.45, 1.64, 0.47, 0.66);
@@ -365,35 +328,8 @@ export default {
   padding: 0.25rem;
   font-size: 0.875rem;
 }
-.scroll-down-effects {
-  color: #eee !important;
-  text-align: center;
-  text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15);
-  line-height: 1.5;
-  display: inline-block;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  animation: scroll-down-effect 1.5s infinite;
-}
-@keyframes scroll-down-effect {
-  0% {
-    top: 0;
-    opacity: 0.4;
-    filter: alpha(opacity=40);
-  }
-  50% {
-    top: -16px;
-    opacity: 1;
-    filter: none;
-  }
-  100% {
-    top: 0;
-    opacity: 0.4;
-    filter: alpha(opacity=40);
-  }
-}
 .big i {
-  color: #17A1FF;
+  color: #17a1ff;
   animation: big 0.8s linear infinite;
 }
 @keyframes big {

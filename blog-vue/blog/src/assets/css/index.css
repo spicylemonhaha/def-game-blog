@@ -26,3 +26,6 @@ ul{
 .el-input__inner {
   height: 36px;
 }
+.separator{
+  margin: 0 6px;
+}
